@@ -1612,7 +1612,7 @@ export const INITIAL_WEBSITE_BANNERS: WebsiteBanner[] = [
     badgeText: 'LIMITED TIME BULK OFFER',
     imageUrl: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=1000&auto=format&fit=crop&q=80',
     ctaText: 'Get Quote on WhatsApp',
-    ctaLink: 'https://wa.me/919835012345?text=Hello%20Kishor%20Construction,%20I%20need%20a%20quote%20for%20waterproofing%20cement',
+    ctaLink: 'https://wa.me/919835392558?text=Hello%20Kishor%20Construction,%20I%20need%20a%20quote%20for%20waterproofing%20cement',
     startDate: '2026-08-01',
     endDate: '2026-09-30',
     isActive: true,
