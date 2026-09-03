@@ -89,9 +89,31 @@ export const Header: React.FC<{
         </button>
       </div>
 
+      {/* Mobile Search Icon Button */}
+      <button
+        onClick={() => setGlobalSearchOpen(true)}
+        className="lg:hidden text-charcoal-700 hover:text-charcoal-950 p-2 rounded-lg hover:bg-concrete-100 transition-colors"
+        title="Search"
+      >
+        <Search className="w-4 h-4 text-charcoal-700" />
+      </button>
+
       {/* Right Controls: Date Filter, Preview Website, Quick Add, Notifications, User & Role */}
-      <div className="flex items-center gap-2 sm:gap-3">
-        {/* Date Filter Pills (compact dropdown on mobile) */}
+      <div className="flex items-center gap-1.5 sm:gap-3">
+        {/* Mobile Date Filter Select */}
+        <select
+          value={dateFilter}
+          onChange={(e) => setDateFilter(e.target.value as DateFilter)}
+          className="xl:hidden text-xs font-semibold rounded-lg border border-concrete-300 px-2 py-1 bg-concrete-50 text-charcoal-900 focus:outline-none"
+        >
+          {dateFilterOptions.map((filter) => (
+            <option key={filter} value={filter}>
+              {filter}
+            </option>
+          ))}
+        </select>
+
+        {/* Date Filter Pills (Desktop) */}
         <div className="hidden xl:flex items-center bg-concrete-100 p-0.5 rounded-lg border border-concrete-200">
           {dateFilterOptions.map((filter) => (
             <button

@@ -197,11 +197,20 @@ export const Sidebar: React.FC<{
   };
 
   return (
-    <aside
-      className={`fixed top-0 bottom-0 left-0 z-40 bg-charcoal-900 text-white flex flex-col border-r border-charcoal-800 transition-all duration-300 ease-in-out ${
-        collapsed ? 'w-20' : 'w-72'
-      } ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
-    >
+    <>
+      {/* Mobile Overlay Backdrop */}
+      {mobileOpen && setMobileOpen && (
+        <div
+          className="fixed inset-0 bg-charcoal-950/70 backdrop-blur-xs z-30 md:hidden animate-fade-in"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
+
+      <aside
+        className={`fixed top-0 bottom-0 left-0 z-40 bg-charcoal-900 text-white flex flex-col border-r border-charcoal-800 transition-all duration-300 ease-in-out ${
+          collapsed ? 'w-20' : 'w-72'
+        } ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
+      >
       {/* Brand Header */}
       <div className="h-16 flex items-center justify-between px-4 border-b border-charcoal-800 bg-charcoal-950/60">
         {!collapsed ? (
@@ -360,5 +369,6 @@ export const Sidebar: React.FC<{
         )}
       </div>
     </aside>
+    </>
   );
 };
