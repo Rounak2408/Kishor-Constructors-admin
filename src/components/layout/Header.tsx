@@ -55,25 +55,27 @@ export const Header: React.FC<{
   };
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white border-b border-concrete-200 px-4 sm:px-6 flex items-center justify-between gap-4 shadow-subtle">
-      {/* Left: Mobile hamburger + Breadcrumbs */}
-      <div className="flex items-center gap-3 min-w-0">
+    <header className="sticky top-0 z-30 h-14 sm:h-16 bg-white border-b border-concrete-200 px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 shadow-subtle">
+      {/* Left: Mobile Hamburger + Clean Page Title */}
+      <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
         <button
           onClick={onOpenMobileNav}
-          className="md:hidden text-charcoal-700 hover:text-charcoal-950 p-1.5 rounded-lg hover:bg-concrete-100"
+          className="md:hidden text-charcoal-800 hover:text-charcoal-950 p-1.5 rounded-lg hover:bg-concrete-100 flex-shrink-0"
           aria-label="Open Navigation"
         >
           <Menu className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-1.5 text-xs text-charcoal-500 font-medium">
-          <span className="text-charcoal-400">{breadcrumbs[0]}</span>
-          <ChevronRight className="w-3.5 h-3.5 text-charcoal-300" />
-          <span className="text-charcoal-900 font-bold truncate">{breadcrumbs[1]}</span>
+        <div className="flex items-center gap-1.5 text-xs text-charcoal-500 font-medium min-w-0">
+          <span className="hidden sm:inline text-charcoal-400">{breadcrumbs[0]}</span>
+          <ChevronRight className="hidden sm:inline w-3.5 h-3.5 text-charcoal-300" />
+          <span className="text-charcoal-950 font-extrabold text-sm sm:text-xs truncate">
+            {breadcrumbs[1]}
+          </span>
         </div>
       </div>
 
-      {/* Center: Global Search Bar */}
+      {/* Center: Global Search Bar (Desktop) */}
       <div className="hidden lg:flex flex-1 max-w-md mx-4">
         <button
           onClick={() => setGlobalSearchOpen(true)}
@@ -89,22 +91,23 @@ export const Header: React.FC<{
         </button>
       </div>
 
-      {/* Mobile Search Icon Button */}
-      <button
-        onClick={() => setGlobalSearchOpen(true)}
-        className="lg:hidden text-charcoal-700 hover:text-charcoal-950 p-2 rounded-lg hover:bg-concrete-100 transition-colors"
-        title="Search"
-      >
-        <Search className="w-4 h-4 text-charcoal-700" />
-      </button>
+      {/* Right Controls: Compact & Non-overlapping for Mobile & Desktop */}
+      <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+        
+        {/* Mobile Search Button */}
+        <button
+          onClick={() => setGlobalSearchOpen(true)}
+          className="lg:hidden text-charcoal-700 hover:text-charcoal-950 p-1.5 sm:p-2 rounded-lg hover:bg-concrete-100 transition-colors"
+          title="Search (Ctrl + K)"
+        >
+          <Search className="w-4 h-4 text-charcoal-800" />
+        </button>
 
-      {/* Right Controls: Date Filter, Preview Website, Quick Add, Notifications, User & Role */}
-      <div className="flex items-center gap-1.5 sm:gap-3">
-        {/* Mobile Date Filter Select */}
+        {/* Mobile Compact Date Select */}
         <select
           value={dateFilter}
           onChange={(e) => setDateFilter(e.target.value as DateFilter)}
-          className="xl:hidden text-xs font-semibold rounded-lg border border-concrete-300 px-2 py-1 bg-concrete-50 text-charcoal-900 focus:outline-none"
+          className="xl:hidden text-[11px] font-bold rounded-lg border border-concrete-300 px-1.5 sm:px-2 py-1 bg-concrete-50 text-charcoal-900 focus:outline-none max-w-[85px] sm:max-w-none"
         >
           {dateFilterOptions.map((filter) => (
             <option key={filter} value={filter}>
@@ -113,7 +116,7 @@ export const Header: React.FC<{
           ))}
         </select>
 
-        {/* Date Filter Pills (Desktop) */}
+        {/* Desktop Date Filter Pills */}
         <div className="hidden xl:flex items-center bg-concrete-100 p-0.5 rounded-lg border border-concrete-200">
           {dateFilterOptions.map((filter) => (
             <button
@@ -130,12 +133,12 @@ export const Header: React.FC<{
           ))}
         </div>
 
-        {/* Website Live Preview Modal Trigger */}
+        {/* Website Live Preview Trigger */}
         <Button
           variant="outline"
           size="sm"
           onClick={() => setWebsitePreviewOpen(true)}
-          className="hidden sm:inline-flex border-concrete-300 text-charcoal-800 hover:border-yellow-brand hover:bg-yellow-light/40"
+          className="hidden md:inline-flex border-concrete-300 text-charcoal-800 hover:border-yellow-brand hover:bg-yellow-light/40"
           icon={<Globe className="w-3.5 h-3.5 text-yellow-dark" />}
         >
           <span>Preview Website</span>
@@ -143,15 +146,28 @@ export const Header: React.FC<{
 
         {/* Quick Add Dropdown */}
         <div className="relative">
-          <Button
-            variant="yellow"
-            size="sm"
+          {/* Desktop Quick Add Button */}
+          <div className="hidden sm:block">
+            <Button
+              variant="yellow"
+              size="sm"
+              onClick={() => setQuickAddDropdownOpen(!isQuickAddDropdownOpen)}
+              icon={<Plus className="w-4 h-4 stroke-[3]" />}
+            >
+              <span>Quick Add</span>
+              <ChevronDown className="w-3.5 h-3.5 ml-0.5 opacity-75" />
+            </Button>
+          </div>
+
+          {/* Mobile Quick Add Icon Button */}
+          <button
+            type="button"
             onClick={() => setQuickAddDropdownOpen(!isQuickAddDropdownOpen)}
-            icon={<Plus className="w-4 h-4 stroke-[3]" />}
+            className="sm:hidden w-8 h-8 rounded-lg bg-yellow-brand text-charcoal-950 font-black flex items-center justify-center shadow-xs active:scale-95 transition-all"
+            title="Quick Add"
           >
-            <span className="hidden sm:inline">Quick Add</span>
-            <ChevronDown className="w-3.5 h-3.5 ml-0.5 opacity-75" />
-          </Button>
+            <Plus className="w-4 h-4 stroke-[3]" />
+          </button>
 
           {isQuickAddDropdownOpen && (
             <>
@@ -214,27 +230,27 @@ export const Header: React.FC<{
         {/* Notifications Icon */}
         <button
           onClick={() => setNotificationsOpen(true)}
-          className="relative p-2 text-charcoal-600 hover:text-charcoal-950 rounded-lg hover:bg-concrete-100 transition-colors"
+          className="relative p-1.5 sm:p-2 text-charcoal-600 hover:text-charcoal-950 rounded-lg hover:bg-concrete-100 transition-colors"
           title="Notifications"
         >
-          <Bell className="w-4 h-4" />
+          <Bell className="w-4 h-4 text-charcoal-800" />
           {totalNotifications > 0 && (
-            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white" />
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white animate-pulse" />
           )}
         </button>
 
-        {/* Role Switcher & User Profile */}
+        {/* Role Switcher & User Profile Avatar */}
         <div className="relative">
           <button
             onClick={() => setRoleDropdownOpen(!isRoleDropdownOpen)}
-            className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-concrete-100 transition-colors border border-transparent hover:border-concrete-200"
+            className="flex items-center gap-1.5 p-1 rounded-lg hover:bg-concrete-100 transition-colors border border-transparent hover:border-concrete-200"
           >
-            <div className="w-7 h-7 rounded-full bg-charcoal-800 text-yellow-brand font-extrabold text-xs flex items-center justify-center border border-charcoal-900">
-              KS
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-charcoal-950 text-yellow-brand font-black text-xs flex items-center justify-center border border-charcoal-800 shadow-2xs">
+              KK
             </div>
             <div className="hidden md:block text-left text-xs">
               <div className="font-bold text-charcoal-900 flex items-center gap-1">
-                <span>{currentUser?.name?.split(' ')[0] || 'Owner'}</span>
+                <span>{currentUser?.name?.split(' ')[0] || 'Kishor'}</span>
                 <ChevronDown className="w-3 h-3 text-charcoal-400" />
               </div>
               <p className="text-[10px] text-charcoal-500 font-semibold">{currentUser?.role || 'OWNER'}</p>
@@ -270,15 +286,8 @@ export const Header: React.FC<{
                           : 'text-charcoal-700 hover:bg-concrete-100'
                       }`}
                     >
-                      <div className="flex items-center gap-2">
-                        <Shield className="w-3.5 h-3.5 text-charcoal-400" />
-                        <span>{role}</span>
-                      </div>
-                      {currentUser?.role === role && (
-                        <span className="text-[10px] bg-yellow-brand text-charcoal-950 px-1.5 py-0.2 rounded font-bold">
-                          Active
-                        </span>
-                      )}
+                      <span className="capitalize">{role.toLowerCase()}</span>
+                      {currentUser?.role === role && <span className="w-1.5 h-1.5 rounded-full bg-yellow-brand" />}
                     </button>
                   ))}
                 </div>
@@ -286,6 +295,7 @@ export const Header: React.FC<{
             </>
           )}
         </div>
+
       </div>
     </header>
   );
