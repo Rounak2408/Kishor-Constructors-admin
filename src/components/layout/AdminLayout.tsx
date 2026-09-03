@@ -19,7 +19,7 @@ export const AdminLayout: React.FC<{ children: ReactNode }> = ({ children }) => 
   }, [setWebsitePreviewOpen]);
 
   return (
-    <div className="min-h-screen bg-concrete-100 flex flex-col antialiased text-charcoal-800">
+    <div className="min-h-screen bg-concrete-100 flex flex-col antialiased text-charcoal-800 overflow-x-hidden w-full max-w-full">
       {/* Sidebar Navigation */}
       <Sidebar
         collapsed={sidebarCollapsed}
@@ -30,7 +30,7 @@ export const AdminLayout: React.FC<{ children: ReactNode }> = ({ children }) => 
 
       {/* Main Workspace Area (offset by sidebar width on desktop) */}
       <div
-        className={`flex-1 flex flex-col transition-all duration-300 ease-in-out ${
+        className={`flex-1 flex flex-col transition-all duration-300 ease-in-out min-w-0 w-full max-w-full overflow-x-hidden ${
           sidebarCollapsed ? 'md:pl-20' : 'md:pl-72'
         }`}
       >
@@ -38,7 +38,7 @@ export const AdminLayout: React.FC<{ children: ReactNode }> = ({ children }) => 
         <Header onOpenMobileNav={() => setMobileNavOpen(true)} />
 
         {/* Dynamic Page Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto animate-fade-in">
+        <main className="flex-1 p-3 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto animate-fade-in overflow-x-hidden">
           {children}
         </main>
       </div>

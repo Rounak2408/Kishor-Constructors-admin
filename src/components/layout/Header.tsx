@@ -55,21 +55,21 @@ export const Header: React.FC<{
   };
 
   return (
-    <header className="sticky top-0 z-30 h-14 sm:h-16 bg-white border-b border-concrete-200 px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 shadow-subtle">
-      {/* Left: Mobile Hamburger + Clean Page Title */}
-      <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+    <header className="sticky top-0 z-30 h-14 sm:h-16 bg-white border-b border-concrete-200 px-2.5 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full max-w-full overflow-hidden shrink-0 shadow-subtle">
+      {/* Left: Mobile Hamburger + Page Title */}
+      <div className="flex items-center gap-1.5 sm:gap-3 min-w-0 flex-1">
         <button
           onClick={onOpenMobileNav}
-          className="md:hidden text-charcoal-800 hover:text-charcoal-950 p-1.5 rounded-lg hover:bg-concrete-100 flex-shrink-0"
+          className="md:hidden text-charcoal-800 hover:text-charcoal-950 p-1.5 rounded-lg hover:bg-concrete-100 shrink-0"
           aria-label="Open Navigation"
         >
           <Menu className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-1.5 text-xs text-charcoal-500 font-medium min-w-0">
-          <span className="hidden sm:inline text-charcoal-400">{breadcrumbs[0]}</span>
-          <ChevronRight className="hidden sm:inline w-3.5 h-3.5 text-charcoal-300" />
-          <span className="text-charcoal-950 font-extrabold text-sm sm:text-xs truncate">
+        <div className="flex items-center gap-1 text-xs text-charcoal-500 font-medium min-w-0">
+          <span className="hidden md:inline text-charcoal-400">{breadcrumbs[0]}</span>
+          <ChevronRight className="hidden md:inline w-3.5 h-3.5 text-charcoal-300" />
+          <span className="text-charcoal-950 font-extrabold text-sm sm:text-xs truncate max-w-[95px] xs:max-w-[130px] sm:max-w-none">
             {breadcrumbs[1]}
           </span>
         </div>
@@ -91,14 +91,14 @@ export const Header: React.FC<{
         </button>
       </div>
 
-      {/* Right Controls: Compact & Non-overlapping for Mobile & Desktop */}
-      <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+      {/* Right Controls: Compact & Perfectly Aligned */}
+      <div className="flex items-center gap-1 sm:gap-2.5 shrink-0">
         
         {/* Mobile Search Button */}
         <button
           onClick={() => setGlobalSearchOpen(true)}
-          className="lg:hidden text-charcoal-700 hover:text-charcoal-950 p-1.5 sm:p-2 rounded-lg hover:bg-concrete-100 transition-colors"
-          title="Search (Ctrl + K)"
+          className="lg:hidden text-charcoal-700 hover:text-charcoal-950 p-1 sm:p-2 rounded-lg hover:bg-concrete-100 transition-colors"
+          title="Search"
         >
           <Search className="w-4 h-4 text-charcoal-800" />
         </button>
@@ -107,7 +107,7 @@ export const Header: React.FC<{
         <select
           value={dateFilter}
           onChange={(e) => setDateFilter(e.target.value as DateFilter)}
-          className="xl:hidden text-[11px] font-bold rounded-lg border border-concrete-300 px-1.5 sm:px-2 py-1 bg-concrete-50 text-charcoal-900 focus:outline-none max-w-[85px] sm:max-w-none"
+          className="xl:hidden text-[11px] font-bold rounded-lg border border-concrete-300 px-1 py-1 bg-concrete-50 text-charcoal-900 focus:outline-none max-w-[78px] xs:max-w-[95px] sm:max-w-none"
         >
           {dateFilterOptions.map((filter) => (
             <option key={filter} value={filter}>
@@ -163,10 +163,10 @@ export const Header: React.FC<{
           <button
             type="button"
             onClick={() => setQuickAddDropdownOpen(!isQuickAddDropdownOpen)}
-            className="sm:hidden w-8 h-8 rounded-lg bg-yellow-brand text-charcoal-950 font-black flex items-center justify-center shadow-xs active:scale-95 transition-all"
+            className="sm:hidden w-7 h-7 xs:w-8 xs:h-8 rounded-lg bg-yellow-brand text-charcoal-950 font-black flex items-center justify-center shadow-xs active:scale-95 transition-all"
             title="Quick Add"
           >
-            <Plus className="w-4 h-4 stroke-[3]" />
+            <Plus className="w-3.5 h-3.5 stroke-[3]" />
           </button>
 
           {isQuickAddDropdownOpen && (
@@ -230,12 +230,12 @@ export const Header: React.FC<{
         {/* Notifications Icon */}
         <button
           onClick={() => setNotificationsOpen(true)}
-          className="relative p-1.5 sm:p-2 text-charcoal-600 hover:text-charcoal-950 rounded-lg hover:bg-concrete-100 transition-colors"
+          className="relative p-1 sm:p-2 text-charcoal-600 hover:text-charcoal-950 rounded-lg hover:bg-concrete-100 transition-colors"
           title="Notifications"
         >
           <Bell className="w-4 h-4 text-charcoal-800" />
           {totalNotifications > 0 && (
-            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white animate-pulse" />
+            <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white animate-pulse" />
           )}
         </button>
 
@@ -243,9 +243,9 @@ export const Header: React.FC<{
         <div className="relative">
           <button
             onClick={() => setRoleDropdownOpen(!isRoleDropdownOpen)}
-            className="flex items-center gap-1.5 p-1 rounded-lg hover:bg-concrete-100 transition-colors border border-transparent hover:border-concrete-200"
+            className="flex items-center gap-1 p-0.5 rounded-lg hover:bg-concrete-100 transition-colors border border-transparent hover:border-concrete-200"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-charcoal-950 text-yellow-brand font-black text-xs flex items-center justify-center border border-charcoal-800 shadow-2xs">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-charcoal-950 text-yellow-brand font-black text-[11px] sm:text-xs flex items-center justify-center border border-charcoal-800 shadow-2xs shrink-0">
               KK
             </div>
             <div className="hidden md:block text-left text-xs">
