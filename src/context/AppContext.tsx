@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
 import {
   UserProfile,
   Category,
@@ -187,6 +187,8 @@ interface AppContextType {
   setWebsitePreviewOpen: (open: boolean) => void;
   isNotificationsOpen: boolean;
   setNotificationsOpen: (open: boolean) => void;
+  areNotificationsCleared: boolean;
+  clearNotifications: () => void;
 
   // Business summary helpers
   summaryMetrics: {
@@ -327,12 +329,25 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return saved ? JSON.parse(saved) : INITIAL_ACTIVITY_LOGS;
   });
 
-  // UI Modals
+  // UI Modals & Notifications
   const [isGlobalSearchOpen, setGlobalSearchOpen] = useState(false);
   const [isQuickAddOpen, setQuickAddOpen] = useState(false);
   const [quickAddType, setQuickAddType] = useState<'product' | 'sale' | 'purchase' | 'expense' | 'employee' | 'fuel' | null>(null);
   const [isWebsitePreviewOpen, setWebsitePreviewOpen] = useState(false);
   const [isNotificationsOpen, setNotificationsOpen] = useState(false);
+  const [areNotificationsCleared, setAreNotificationsCleared] = useState<boolean>(() => {
+    return localStorage.getItem('kc_notifications_cleared') === 'true';
+  });
+
+  const clearNotifications = useCallback(() => {
+    setAreNotificationsCleared(true);
+    localStorage.setItem('kc_notifications_cleared', 'true');
+
+    // Also update all new customer enquiries to 'Contacted' so database reflects read status
+    setCustomerEnquiries((prev) =>
+      prev.map((e) => (e.status === 'New' ? { ...e, status: 'Contacted' as const } : e))
+    );
+  }, []);
 
   // Sync to localStorage
   useEffect(() => {
@@ -1134,6 +1149,8 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
         setWebsitePreviewOpen,
         isNotificationsOpen,
         setNotificationsOpen,
+        areNotificationsCleared,
+        clearNotifications,
         summaryMetrics,
       }}
     >

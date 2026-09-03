@@ -21,6 +21,8 @@ export const NotificationsDrawer: React.FC = () => {
     purchases,
     setActivePage,
     updateEnquiryStatus,
+    clearNotifications,
+    areNotificationsCleared,
   } = useApp();
 
   const toast = useToast();
@@ -30,15 +32,17 @@ export const NotificationsDrawer: React.FC = () => {
 
   if (!isNotificationsOpen) return null;
 
-  const lowStockItems = clearedSession
+  const isCleared = clearedSession || areNotificationsCleared;
+
+  const lowStockItems = isCleared
     ? []
     : products.filter((p) => p.currentStock <= p.minimumStock);
 
-  const pendingEnquiries = clearedSession
+  const pendingEnquiries = isCleared
     ? []
     : customerEnquiries.filter((e) => e.status === 'New');
 
-  const duePurchases = clearedSession
+  const duePurchases = isCleared
     ? []
     : purchases.filter((p) => p.paymentStatus !== 'Paid');
 
@@ -50,12 +54,15 @@ export const NotificationsDrawer: React.FC = () => {
   };
 
   const handleClearAll = () => {
-    // 1. Mark all pending customer enquiries as 'Contacted' in state
+    // 1. Call context clearNotifications to hide red dot badge across header
+    clearNotifications();
+
+    // 2. Mark all pending customer enquiries as 'Contacted' in state
     pendingEnquiries.forEach((enq) => {
       updateEnquiryStatus(enq.id, 'Contacted', 'Marked as read from notification drawer');
     });
 
-    // 2. Hide low stock & purchase alerts from current notification drawer session
+    // 3. Hide low stock & purchase alerts from current notification drawer session
     setClearedSession(true);
 
     toast.success(

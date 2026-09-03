@@ -33,6 +33,7 @@ export const Header: React.FC<{
     setQuickAddType,
     setWebsitePreviewOpen,
     setNotificationsOpen,
+    areNotificationsCleared,
     customerEnquiries,
     summaryMetrics,
     currentUser,
@@ -44,7 +45,9 @@ export const Header: React.FC<{
 
   const newEnquiryCount = customerEnquiries.filter((e) => e.status === 'New').length;
   const lowStockCount = summaryMetrics.lowStockCount;
-  const totalNotifications = newEnquiryCount + (lowStockCount > 0 ? 1 : 0);
+  const totalNotifications = areNotificationsCleared
+    ? 0
+    : newEnquiryCount + (lowStockCount > 0 ? 1 : 0);
 
   const dateFilterOptions: DateFilter[] = ['Today', 'Yesterday', 'This Week', 'This Month', 'This Year'];
 
