@@ -267,8 +267,8 @@ VALUES (
   'main',
   'Bihar’s Leading Building Materials & Construction Supplies',
   'Wholesale & Retail: UltraTech Cement, Tata Tiscon TMT, Sone Sand & Kiln Bricks with direct on-site fleet delivery across Patna & Bihar.',
-  '+91 98350 12345',
-  '+91 98350 12345',
+  '+91 98353 92558',
+  '+91 98353 92558',
   'sales@kishorconstruction.com',
   'NH-30, Near Fatuha Bypass, Patna, Bihar 800001',
   '10AABCK1234F1Z5'

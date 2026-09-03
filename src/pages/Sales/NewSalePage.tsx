@@ -443,7 +443,7 @@ export const NewSalePage: React.FC = () => {
                 <h2 className="text-base font-extrabold tracking-wider text-charcoal-950">KISHOR CONSTRUCTION</h2>
                 <p className="text-charcoal-600 font-medium">Wholesale Building Materials Depot</p>
                 <p className="text-charcoal-500 text-[11px] mt-1">NH-30 Main Road, Danapur Cantt, Patna, Bihar</p>
-                <p className="text-charcoal-500 text-[11px]">Phone: +91 98350 12345 • GSTIN: 10AABCK4891Q1Z8</p>
+                <p className="text-charcoal-500 text-[11px]">Phone: +91 98353 92558 • GSTIN: 10AABCK4891Q1Z8</p>
               </div>
               <div className="text-right">
                 <span className="text-sm font-extrabold text-charcoal-950 block">{generatedSale.invoiceNo}</span>

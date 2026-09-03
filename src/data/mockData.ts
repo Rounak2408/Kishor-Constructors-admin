@@ -29,7 +29,7 @@ export const INITIAL_USER: UserProfile = {
   name: 'Kishor Keshri',
   email: 'kishor@kishorconstruction.com',
   role: 'OWNER',
-  phone: '+91 98350 12345',
+  phone: '+91 98353 92558',
   avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
   lastLogin: 'Today at 08:30 AM',
 };
@@ -1598,8 +1598,8 @@ export const INITIAL_WEBSITE_HERO: WebsiteHeroContent = {
   ctaLink: '#products',
   heroImageUrl: 'https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=1200&auto=format&fit=crop&q=80',
   badgeText: 'TRUSTED BUILDERS & CONTRACTORS CHOICE SINCE 2012',
-  phonePrimary: '+91 98350 12345',
-  whatsappNumber: '+919835012345',
+  phonePrimary: '+91 98353 92558',
+  whatsappNumber: '+919835392558',
   addressDisplay: 'Kishor Construction Yard, NH-30 Main Road, Near Danapur Cantt, Patna, Bihar 801503',
   gstNumber: '10AABCK4891Q1Z8',
 };

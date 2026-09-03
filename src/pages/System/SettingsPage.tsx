@@ -31,7 +31,7 @@ export const SettingsPage: React.FC = () => {
   const [businessType, setBusinessType] = useState('Building Materials & Construction Supplies');
   const [gstNumber, setGstNumber] = useState('10AABCK1234F1Z5');
   const [ownerName, setOwnerName] = useState('Kishor Keshri');
-  const [phone, setPhone] = useState('+91 98350 12345');
+  const [phone, setPhone] = useState('+91 98353 92558');
   const [email, setEmail] = useState('admin@kishorconstruction.com');
   const [address, setAddress] = useState('NH-30, Near Fatuha Bypass, Patna, Bihar 800001');
 

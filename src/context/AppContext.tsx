@@ -433,7 +433,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
       name: role === 'OWNER' ? 'Kishor Keshri' : role === 'ADMIN' ? 'Amit Kumar' : role === 'ACCOUNTANT' ? 'Sunil Singh' : 'Suresh Paswan',
       email: `${role.toLowerCase()}@kishorconstruction.com`,
       role,
-      phone: '+91 98350 12345',
+      phone: '+91 98353 92558',
       avatarUrl: INITIAL_USER.avatarUrl,
       lastLogin: 'Active now',
     };
